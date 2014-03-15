@@ -1,0 +1,5 @@
+*/1 * * * * /var/www/MPOS_solar/cronjobs/run-crons.sh
+*/1 * * * * /var/www/MPOS_usde/cronjobs/run-crons.sh
+
+
+*/1 * * * * /var/www/MPOS_redd/cronjobs/run-crons.sh

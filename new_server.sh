@@ -66,7 +66,6 @@ sudo chown -R www-data /var/www/MPOS_$1/public/templates/compile /var/www/MPOS_$
  
 echo "adding cronjobs to crontab"
 command="/var/www/MPOS_$1/cronjobs/run-crons.sh"
-job="*/2 \* \* \* \* $command"
+job="*/2 * * * * $command"
 
-echo "add this line to cronjobs by running crontab -e"
-echo $job
+(sudo crontab -l; echo "*/1 * * * * /var/www/MPOS_$1/cronjobs/run-crons.sh") | sudo crontab
