@@ -6,25 +6,29 @@ if [ $# -lt 5 ]; then
 	exit -1
 fi
 
-cd /home/hashcow/coins
+cd $HOME/coins
 git clone $1
-cd $2/src
-make -f makefile.unix
-sudo cp $2d /usr/bin/
+AFTER_SLASH=${1##*/}
+B=${AFTER_SLASH%.git}
+BEFORE_git=${AFTER_SLASH%.git}
+
+cd $B/src
+#make -f makefile.unix
+sudo cp $B\d /usr/bin/
 
 
-mkdir /home/hashcow/\.$2
+mkdir $HOME/\.$B
 
-cp /home/hashcow/new_mpos_stratum/template_coin_rpcconfig.conf /home/hashcow/\.$2/$2.conf
+cp $HOME/new_mpos_stratum/template_coin_rpcconfig.conf $HOME/\.$B/$B.conf
 
-sed -e s/REPLACE_RPC_PORT/$3/g -i /home/hashcow/\.$2/$2.conf
-sed -e s/REPLACE_RPC_USER/$4/g -i /home/hashcow/\.$2/$2.conf
-sed -e s/REPLACE_RPC_PASSWORD/$5/g -i /home/hashcow/\.$2/$2.conf
+sed -e s/REPLACE_RPC_PORT/$3/g -i $HOME/\.$B/$B.conf
+sed -e s/REPLACE_RPC_USER/$4/g -i $HOME/\.$B/$B.conf
+sed -e s/REPLACE_RPC_PASSWORD/$5/g -i $HOME/\.$B/$B.conf
 
-sudo cp /home/hashcow/new_mpos_stratum/template_upstart.conf /etc/init/$2_daemon.conf
+sudo cp $HOME/new_mpos_stratum/template_upstart.conf /etc/init/$B\d.conf
 
-sudo sed -e s/REPLACE_COIN/$2/g -i /etc/init/$2_daemon.conf
-sudo sed -e s/REPLACE_DAEMON/$2d/g -i /etc/init/$2_daemon.conf
-sudo sed -e s/REPLACE_DIRECTORY/\.$2/g -i /etc/init/$2_daemon.conf
+sudo sed -e s/REPLACE_COIN/$B/g -i /etc/init/$B\d.conf
+sudo sed -e s/REPLACE_DAEMON/$B\d/g -i /etc/init/$B\d.conf
+sudo sed -e s/REPLACE_DIRECTORY/\.$B/g -i /etc/init/$B\d.conf
 
-sudo initctl start $2_daemon
+sudo initctl start $B\d

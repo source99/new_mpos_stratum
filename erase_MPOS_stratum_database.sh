@@ -9,7 +9,7 @@ fi
 echo "removing $1 database"
 mysql -u root -pQwerty21 -e "drop database $1"
 echo "removing $1 stratum server"
-rm -rf /home/hashcow/stratum_directories/$1
+rm -rf /home/ubuntu/stratum_directories/$1
 echo "removing MPOS server"
 sudo rm -rf /var/www/MPOS_$1
 echo "removing automatic start script"

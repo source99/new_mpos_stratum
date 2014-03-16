@@ -18,19 +18,19 @@ sudo mysql -u root -pQwerty21 $1 < /var/www/MPOS_template/sql/000_base_structure
 
 #copy stratum-mining template
 echo "copying stratum server"
-cp -r /home/hashcow/stratum_directories/stratum_mining_template /home/hashcow/stratum_directories/$1
+cp -r /home/ubuntu/stratum_directories/stratum_mining_template /home/ubuntu/stratum_directories/$1
 
 
 #replace values in conf file
 echo "updating stratum server $1 with correct values"
-sed -e s/REPLACE_CODE_NAME/$1/g -i /home/hashcow/stratum_directories/$1/conf/config.py
-sed -e s/REPLACE_DB_NAME/$1/g -i /home/hashcow/stratum_directories/$1/conf/config.py
-sed -e s/REPLACE_COINDAEMON_TRUSTED_PORT/$2/g -i /home/hashcow/stratum_directories/$1/conf/config.py
-sed -e s/REPLACE_COINDAEMON_TRUSTED_USER/$3/g -i /home/hashcow/stratum_directories/$1/conf/config.py
-sed -e s/REPLACE_COINDAEMON_TRUSTED_PASSWORD/$4/g -i /home/hashcow/stratum_directories/$1/conf/config.py
-sed -e s/REPLACE_CENTRAL_WALLET/$5/g -i /home/hashcow/stratum_directories/$1/conf/config.py
-sed -e s/REPLACE_LISTEN_SOCKET_TRANSPORT/$6/g -i /home/hashcow/stratum_directories/$1/conf/config.py
-sed -e s/REPLACE_COINDAEMON_TRUSTED_HOST/$7/g -i /home/hashcow/stratum_directories/$1/conf/config.py
+sed -e s/REPLACE_CODE_NAME/$1/g -i /home/ubuntu/stratum_directories/$1/conf/config.py
+sed -e s/REPLACE_DB_NAME/$1/g -i /home/ubuntu/stratum_directories/$1/conf/config.py
+sed -e s/REPLACE_COINDAEMON_TRUSTED_PORT/$2/g -i /home/ubuntu/stratum_directories/$1/conf/config.py
+sed -e s/REPLACE_COINDAEMON_TRUSTED_USER/$3/g -i /home/ubuntu/stratum_directories/$1/conf/config.py
+sed -e s/REPLACE_COINDAEMON_TRUSTED_PASSWORD/$4/g -i /home/ubuntu/stratum_directories/$1/conf/config.py
+sed -e s/REPLACE_CENTRAL_WALLET/$5/g -i /home/ubuntu/stratum_directories/$1/conf/config.py
+sed -e s/REPLACE_LISTEN_SOCKET_TRANSPORT/$6/g -i /home/ubuntu/stratum_directories/$1/conf/config.py
+sed -e s/REPLACE_COINDAEMON_TRUSTED_HOST/$7/g -i /home/ubuntu/stratum_directories/$1/conf/config.py
 
 #copy MPOS template
 echo "copying MPOS"
@@ -50,7 +50,7 @@ sudo sed -e s/REPLACE_COINDAEMON_TRUSTED_HOST/$7/g -i /var/www/MPOS_$1/public/in
 
 #install /etc/init/special_twistd
 echo "copying config to automatically start twistd on system boot"
-sudo cp /home/hashcow/scripts/template_twistd.conf /etc/init/twistd_$1.conf
+sudo cp /home/ubuntu/new_mpos_stratum/template_twistd.conf /etc/init/twistd_$1.conf
 
 #start /etc/init/special_twistd
 echo "updating /etc/init/twistd_$1.conf with proper values"
